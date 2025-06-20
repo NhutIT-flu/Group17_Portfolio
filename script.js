@@ -2,7 +2,7 @@ const teamMembers = [
     {
         name: "Phạm Minh Nhựt",
         avatar: "img/avatar/nhut.jpg",
-        githubUrl: "https://nhutit-flu.github.io/#summary",
+        githubUrl: "https://nhutit-flu.github.io/",
     },
     {
         name: "Trần Gia Bảo",
@@ -17,12 +17,12 @@ const teamMembers = [
     {
         name: "Nguyễn Duy Minh",
         avatar: "img/avatar/minh.jpg",
-        githubUrl: "https://minhkoi0103.github.io/duymincv/",
+        githubUrl: "https://minhkoi0103.github.io/NguyenDuyMinh/",
     },
     {
         name: "Tăng Tiến Lợi",
         avatar: "img/avatar/loi.jpg",
-        githubUrl: "https://loi1966.github.io/degitalcv/#",
+        githubUrl: "https://loi1966.github.io/degitalcv/",
     }
 ];
 
@@ -119,11 +119,9 @@ function generateTeamCards() {
     teamMembers.forEach(member => {
         const card = document.createElement('div');
         card.className = 'team-member-card';
-        
-        // Structure based on the provided image
         card.innerHTML = `
             <div class="card-header">
-                <img src="${member.avatar}" alt="${member.name}" class="avatar">
+                <img src="${member.avatar}" alt="${member.name}" class="avatar" style="cursor:pointer;">
             </div>
             <div class="card-body">
                 <h3 class="member-name-2d">${member.name}</h3>
@@ -132,7 +130,11 @@ function generateTeamCards() {
                 <a href="${member.githubUrl}" target="_blank" class="contact-me-btn"><i class="fab fa-github"></i> Xem CV GitHub</a>
             </div>
         `;
-
+        // Thêm sự kiện click cho avatar
+        const avatarImg = card.querySelector('.avatar');
+        avatarImg.addEventListener('click', function(e) {
+            window.open(member.githubUrl, '_blank');
+        });
         teamCardsContainer.appendChild(card);
     });
 }

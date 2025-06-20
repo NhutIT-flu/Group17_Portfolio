@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&display=swap');
+
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -228,31 +233,32 @@ body::before {
 }
 
 .hero-title {
+    font-family: 'Baloo 2', 'Comic Sans MS', cursive, sans-serif;
     font-size: 3.5rem;
     font-weight: 700;
     margin-top: 10px;
     margin-bottom: 0.5rem;
-    color: #FFD700;
+    color: #2196f3;
     text-align: left;
     line-height: 1.1;
     max-width: 700px;
     white-space: normal;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    -webkit-text-stroke: 3px #111;
-    text-stroke: 3px #111;
+    -webkit-text-stroke: 1.2px #111;
+    text-stroke: 1.2px #111;
     text-shadow:
-        0 4px 24px #000,
-        0 2px 4px rgba(0,0,0,0.5),
-        0 0 8px #FFD700,
-        0 0 16px #FFD700;
-    background: linear-gradient(90deg, #fffbe7 10%, #fff 30%, #FFD700 50%, #7ed6ff 70%, #ffb347 90%, #fffbe7 100%);
-    background-size: 300% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
+        0 2px 8px #fff,
+        0 0 16px #2196f3,
+        0 0 32px #90caf9,
+        0 0 4px #fff;
     animation: hero-glow 2.2s infinite alternate, hero-gradient-move 3.5s linear infinite;
+    position: relative;
+    z-index: 10;
+}
+
+.hero-title::before {
+    content: none;
 }
 
 @keyframes hero-glow {
@@ -412,24 +418,23 @@ body::before {
 }
 
 .team-member-cards-container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    justify-items: center;
-    align-items: start;
+    display: flex;
+    flex-direction: row;
     gap: 40px;
     max-width: 100%;
-    overflow-x: visible;
-    scroll-snap-type: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
     padding-bottom: 0;
+    scrollbar-width: none; /* Firefox */
 }
-
 .team-member-cards-container::-webkit-scrollbar {
-    display: none;
+    display: none; /* Chrome, Safari */
 }
 
 /* New 2D Team Member Cards */
 .team-member-card {
-    flex: 1 1 320px;
+    flex: 0 0 320px;
     max-width: 350px;
     min-width: 300px;
     margin: 0 10px 40px 10px;
