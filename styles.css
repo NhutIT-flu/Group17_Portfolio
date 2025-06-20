@@ -228,19 +228,19 @@ body::before {
 }
 
 .hero-title {
-    font-size: 5.2rem;
+    font-size: 3.5rem;
     font-weight: 700;
-    margin-top: 5px;
+    margin-top: 10px;
     margin-bottom: 0.5rem;
     color: #FFD700;
     text-align: left;
-    line-height: 1.05;
-    max-width: 950px;
+    line-height: 1.1;
+    max-width: 700px;
     white-space: normal;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    -webkit-text-stroke: 4px #111;
-    text-stroke: 4px #111;
+    -webkit-text-stroke: 3px #111;
+    text-stroke: 3px #111;
     text-shadow:
         0 4px 24px #000,
         0 2px 4px rgba(0,0,0,0.5),
@@ -747,7 +747,9 @@ body::before {
     }
 
     .hero-title {
-        font-size: 3rem;
+        font-size: 2.2rem;
+        max-width: 95vw;
+        margin-top: 8px;
     }
 
     .team-cards-in-hero {
@@ -966,4 +968,32 @@ body::before {
     60% { transform: rotate(2deg) scale(1.04); }
     80% { transform: rotate(-3deg) scale(1.01); }
     100% { transform: rotate(-4deg) scale(1); }
+}
+
+#music-toggle-btn {
+    position: fixed;
+    top: 24px;
+    right: 32px;
+    z-index: 2000;
+    background: rgba(255,255,255,0.85);
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    cursor: pointer;
+    font-size: 2rem;
+    color: #3b3b3b;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+#music-toggle-btn:hover {
+    background: #FFD700;
+    color: #fff;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+}
+#music-toggle-btn.music-off {
+    background: #ff4d6d;
+    color: #fff;
 }

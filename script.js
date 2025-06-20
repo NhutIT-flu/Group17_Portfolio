@@ -265,3 +265,35 @@ function startHeroTyping() {
     }
     typeChar();
 }
+
+// Music toggle button functionality
+const musicBtn = document.getElementById('music-toggle-btn');
+const audio = document.getElementById('bg-music');
+if (musicBtn && audio) {
+    function updateMusicBtn() {
+        if (audio.paused) {
+            musicBtn.classList.add('music-off');
+            musicBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        } else {
+            musicBtn.classList.remove('music-off');
+            musicBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+        }
+    }
+    musicBtn.addEventListener('click', function() {
+        if (audio.paused) {
+            audio.play();
+        } else {
+            audio.pause();
+        }
+        updateMusicBtn();
+    });
+    // Cập nhật icon khi load trang
+    updateMusicBtn();
+    // Tự động phát nhạc khi vào trang (nếu trình duyệt cho phép)
+    setTimeout(function() {
+        if (audio.paused) {
+            audio.play().catch(function(){});
+            updateMusicBtn();
+        }
+    }, 300);
+}
