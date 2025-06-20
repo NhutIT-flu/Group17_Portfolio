@@ -10,7 +10,7 @@ const teamMembers = [
         githubUrl: "https://giabao0405.github.io/GiaBaoCV/",
     },
     {
-        name: "Võ Văn Quyết",
+        name: "Võ Văn Quyến",
         avatar: "img/avatar/quyen.jpg",
         githubUrl: "https://thevvq.github.io/degitalcv/",
     },
@@ -51,6 +51,14 @@ document.addEventListener('DOMContentLoaded', function() {
     createParticles();
     generateTeamCards(); // Call the new 2D card generation function
     initializeNavigation();
+    startHeroTyping(); // Thêm hiệu ứng typing cho dòng chữ chào mừng
+    setTimeout(function() {
+        const audio = document.getElementById('bg-music');
+        if (audio) {
+            audio.volume = 0.05;
+            audio.play().catch(function(){});
+        }
+    }, 300);
 });
 
 // Create floating Doraemon gadgets
@@ -129,84 +137,14 @@ function generateTeamCards() {
     });
 }
 
-// Initialize navigation with enhanced scrolling
+// Remove navigation and auto-scroll logic
 function initializeNavigation() {
-    const teamMemberCardsContainer = document.querySelector('.team-member-cards-container');
+    // Remove navigation arrows from DOM
     const leftArrow = document.querySelector('.left-arrow');
     const rightArrow = document.querySelector('.right-arrow');
-
-    if (!teamMemberCardsContainer || !leftArrow || !rightArrow) return;
-
-    // Calculate card width including gap (adjust if your new 2D card has different dimensions)
-    const cardWidth = 320 + 40; // Approx new card width + gap (adjust based on actual card size)
-
-    leftArrow.addEventListener('click', () => {
-        teamMemberCardsContainer.scrollBy({ 
-            left: -cardWidth, 
-            behavior: 'smooth' 
-        });
-        addArrowClickEffect(leftArrow);
-    });
-
-    rightArrow.addEventListener('click', () => {
-        teamMemberCardsContainer.scrollBy({ 
-            left: cardWidth, 
-            behavior: 'smooth' 
-        });
-        addArrowClickEffect(rightArrow);
-    });
-
-    // Auto-scroll functionality
-    let autoScrollInterval;
-    let isAutoScrolling = true;
-
-    function startAutoScroll() {
-        if (!isAutoScrolling) return;
-        autoScrollInterval = setInterval(() => {
-            if (teamMemberCardsContainer.scrollLeft + teamMemberCardsContainer.clientWidth >= teamMemberCardsContainer.scrollWidth - 10) {
-                teamMemberCardsContainer.scrollTo({ left: 0, behavior: 'smooth' });
-            } else {
-                teamMemberCardsContainer.scrollBy({ left: cardWidth, behavior: 'smooth' });
-            }
-        }, 4000);
-    }
-
-    function stopAutoScroll() {
-        clearInterval(autoScrollInterval);
-    }
-
-    // Pause auto-scroll on hover
-    teamMemberCardsContainer.addEventListener('mouseenter', () => {
-        isAutoScrolling = false;
-        stopAutoScroll();
-    });
-
-    teamMemberCardsContainer.addEventListener('mouseleave', () => {
-        isAutoScrolling = true;
-        startAutoScroll();
-    });
-
-    // Start auto-scroll
-    startAutoScroll();
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            teamMemberCardsContainer.scrollBy({ left: -cardWidth, behavior: 'smooth' });
-            addArrowClickEffect(leftArrow);
-        } else if (e.key === 'ArrowRight') {
-            teamMemberCardsContainer.scrollBy({ left: cardWidth, behavior: 'smooth' });
-            addArrowClickEffect(rightArrow);
-        }
-    });
-}
-
-// Add click effect to navigation arrows
-function addArrowClickEffect(arrow) {
-    arrow.style.transform = 'scale(0.9)';
-    setTimeout(() => {
-        arrow.style.transform = 'scale(1)';
-    }, 150);
+    if (leftArrow) leftArrow.style.display = 'none';
+    if (rightArrow) rightArrow.style.display = 'none';
+    // No navigation needed
 }
 
 // Enhanced contact button interactions
@@ -311,3 +249,19 @@ scrollToTopStyle.textContent = `
     }
 `;
 document.head.appendChild(scrollToTopStyle);
+
+function startHeroTyping() {
+    const text = 'Chào mừng đến với ngôi nhà của Doreamon!';
+    const target = document.getElementById('hero-typing-text');
+    if (!target) return;
+    target.textContent = '';
+    let i = 0;
+    function typeChar() {
+        if (i <= text.length) {
+            target.textContent = text.slice(0, i);
+            i++;
+            setTimeout(typeChar, 20 + Math.random() * 15);
+        }
+    }
+    typeChar();
+}
