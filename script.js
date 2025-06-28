@@ -5,7 +5,7 @@ const teamMembers = [
         githubUrl: "https://nhutit-flu.github.io/",
     },
     {
-        name: "Trần Gia Bảo",
+        name: "Nguyễn Gia Bảo",
         avatar: "img/avatar/bao.jpg",
         githubUrl: "https://giabao0405.github.io/GiaBaoCV/",
     },
